@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="340sp"
+    android:background="@drawable/bg_item_list"
+    android:layout_height="115sp">
+    <ImageView
+        android:id="@+id/itemlist_img"
+        android:layout_width="95sp"
+        android:layout_height="95sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"
+        android:background="@drawable/bg_item_list"></ImageView>
+
+    <RelativeLayout
+        android:layout_marginTop="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="85sp">
+
+        <TextView
+            android:id="@+id/item_nametxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10sp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Nama Merk Item"
+            android:textColor="#0F1014"
+            android:textSize="16sp"></TextView>
+        <ImageView
+            android:id="@+id/shop_img"
+            android:layout_marginTop="8sp"
+            android:layout_below="@id/item_nametxt"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="10sp"
+            android:background="@drawable/shop_icon"
+            android:layout_height="wrap_content">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/namatokotxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/item_nametxt"
+            android:layout_marginStart="8sp"
+            android:layout_marginTop="5sp"
+            android:layout_toRightOf="@id/shop_img"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Nama Toko"
+            android:textSize="16sp"></TextView>
+
+        <TextView
+            android:id="@+id/hargaitemtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/namatokotxt"
+            android:layout_marginStart="10sp"
+            android:layout_marginTop="5sp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Harga Barang"
+            android:textSize="16sp"></TextView>
+    </RelativeLayout>
+</LinearLayout>

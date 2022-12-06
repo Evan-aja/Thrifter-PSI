@@ -10,7 +10,7 @@ class Profile : AppCompatActivity() {
         setContentView(R.layout.activity_profile)
 
         var theBottom : BottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        theBottom.selectedItemId = R.id.propil
+        theBottom.selectedItemId = R.id.profile
 
         supportActionBar?.setDisplayShowCustomEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_ios_new_24)
