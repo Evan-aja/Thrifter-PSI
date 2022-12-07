@@ -8,20 +8,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.psi.thrifter.R
+import com.psi.thrifter.home.OnTrendingClickListener
 
-class Listtrendingadapter(private val listtrending: ArrayList<trendingdata>):
-        RecyclerView.Adapter<Listtrendingadapter.ListViewHolder>() {
-            override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
-                val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item, viewGroup, false)
-                return ListViewHolder(view)
-            }
+class Listtrendingadapter(private val listtrending: ArrayList<trendingdata>,private val onTrendingClickListener: OnTrendingClickListener):
+    RecyclerView.Adapter<Listtrendingadapter.ListViewHolder>() {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item, viewGroup, false)
+        return ListViewHolder(view)
+    }
 
-            override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-                val (img, title, price) = listtrending[position]
-                holder.imgtrend.setImageResource(img)
-                holder.titletxt.text = title
-                holder.pricetxt.text = price
-            }
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
+        val (img, title, price) = listtrending[position]
+        holder.imgtrend.setImageResource(img)
+        holder.titletxt.text = title
+        holder.pricetxt.text = price
+
+        holder.itemView.setOnClickListener{
+            onTrendingClickListener.onTrendingItemClicked(position)
+        }
+
+    }
+
 
     override fun getItemCount(): Int = listtrending.size
 
@@ -30,4 +37,4 @@ class Listtrendingadapter(private val listtrending: ArrayList<trendingdata>):
         var titletxt: TextView = itemView.findViewById(R.id.itemname_trend)
         var pricetxt: TextView = itemView.findViewById(R.id.itemharga_trend)
     }
-        }
+}
