@@ -17,9 +17,9 @@ class adapterKategori(private val kategori: List<data_kategori>) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val pahlawan = kategori[position]
-        holder.view.findViewById<ImageView>(R.id.img_item_photo).setImageDrawable(holder.view.context.getDrawable(pahlawan.image))
-        holder.view.findViewById<TextView>(R.id.tv_item_name).text = "${pahlawan.nama}"
+        val kategori = kategori[position]
+        holder.view.findViewById<ImageView>(R.id.img_item_photo).setImageDrawable(holder.view.context.getDrawable(kategori.image))
+        holder.view.findViewById<TextView>(R.id.tv_item_name).text = "${kategori.nama}"
     }
 
     override fun getItemCount() = kategori.size

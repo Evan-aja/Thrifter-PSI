@@ -31,10 +31,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val todoVM = listOf(
-            data_trending(R.drawable.account_profile_user, "Aadasd", "Rp 989.989"),
-            data_trending(R.drawable.account_profile_user, "Basfasfa", "Rp 1.239.989"),
-            data_trending(R.drawable.account_profile_user, "Casfasf", "Rp 9.129.989"),
-            data_trending(R.drawable.account_profile_user, "Dasfasf", "Rp 29.989"),
+            //database
         )
 
         main = findViewById(R.id.recyclerSemuaKategoriPage)
