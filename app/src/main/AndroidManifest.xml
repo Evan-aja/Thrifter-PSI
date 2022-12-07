@@ -12,16 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ThrifterPSI"
         tools:targetApi="31">
-        <activity
-            android:name=".profile.UserActivity"
-            android:exported="false"/>
+
         <activity
             android:name="com.psi.payment_page.PaymentActivity"
             android:exported="false"/>
-
+        <activity
+            android:name=".detail.DetailProductActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".seeAll.seeAllActivity"
+            android:exported="false"/>
         <activity
             android:name="com.psi.thrifter.MainActivity"
             />
+
+
         <activity
             android:name="com.psi.thrifter.SplashScreen"
             android:exported="true">
@@ -31,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

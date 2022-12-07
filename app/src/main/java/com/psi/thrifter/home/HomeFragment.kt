@@ -1,14 +1,27 @@
 package com.psi.thrifter.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
+
+import com.psi.payment_page.PaymentActivity
 import com.psi.thrifter.*
+import com.psi.thrifter.cart.CartFragment
+import com.psi.thrifter.detail.DetailProductActivity
+import com.psi.thrifter.kategori.SearchFragment
+import com.psi.thrifter.profile.ProfileFragment
+import com.psi.thrifter.seeAll.seeAllActivity
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,13 +33,13 @@ private const val ARG_PARAM2 = "param2"
  * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), OnTrendingClickListener,OnItemClickListener{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
-
+    var trending = ArrayList<trendingdata>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,9 +60,11 @@ class HomeFragment : Fragment() {
         list.add(item5)
 
         val rvTrending: RecyclerView = root.findViewById(R.id.recvtrending)
-        val trendingadapter = Listtrendingadapter(list)
-        rvTrending.adapter = trendingadapter
+
+        var trendingAdapter = Listtrendingadapter(list,this)
+        rvTrending.adapter = trendingAdapter
         rvTrending.layoutManager = LinearLayoutManager(this.context, RecyclerView.HORIZONTAL, false)
+
 
 
         val list_all = ArrayList<all_itemdata>()
@@ -67,9 +82,17 @@ class HomeFragment : Fragment() {
         list_all.add(item6_all)
 
         val rvAll: RecyclerView = root.findViewById(R.id.recvlist_all)
-        val all_itemadapter = List_all_itemdata_adapter(list_all)
+        val all_itemadapter = List_all_itemdata_adapter(list_all,this)
         rvAll.adapter = all_itemadapter
         rvAll.layoutManager = GridLayoutManager(this.context, 2, GridLayoutManager.VERTICAL, false)
+
+        val tv_lihatSemua = root.findViewById<TextView>(R.id.seeAll)
+        tv_lihatSemua.setOnClickListener{
+            startActivity(Intent(this@HomeFragment.context, seeAllActivity::class.java))
+            true
+        }
+
+
 
 
         return root
@@ -94,4 +117,15 @@ class HomeFragment : Fragment() {
                 }
             }
     }
+
+    override fun onTrendingItemClicked(position: Int) {
+        val intent = Intent(this.context, DetailProductActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun onItemClicked(position: Int) {
+        val intent = Intent(this.context, DetailProductActivity::class.java)
+        startActivity(intent)
+    }
+
 }
