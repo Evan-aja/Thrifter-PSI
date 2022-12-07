@@ -13,7 +13,7 @@
         android:theme="@style/Theme.ThrifterPSI"
         tools:targetApi="31">
         <activity
-            android:name=".UserActivity"
+            android:name=".profile.UserActivity"
             android:exported="false"/>
         <activity
             android:name="com.psi.payment_page.PaymentActivity"

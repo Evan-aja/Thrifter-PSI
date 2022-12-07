@@ -8,14 +8,15 @@
     android:padding="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="191dp"
-        android:layout_height="228dp"
+        android:layout_width="160dp"
+        android:layout_height="180dp"
         android:background="@drawable/backgroundkategori">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="170dp"
-            android:layout_height="168dp"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_item_name"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,7 @@
             android:id="@+id/tv_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="150dp"
             android:fontFamily="@font/poppins"
             android:textColor="@color/black"
             android:textSize="15dp"
@@ -47,6 +48,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.083"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:fontFamily="@font/poppins" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
