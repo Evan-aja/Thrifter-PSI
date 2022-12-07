@@ -1,4 +1,4 @@
-package com.example.ujicoba32
+package com.psi.thrifter
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,11 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ujicoba.data_trending
-import com.example.ujicoba.adaptertrendingpage
-import com.psi.thrifter.R
 
-class MainActivity : AppCompatActivity() {
-    lateinit var main: RecyclerView
+class MainActivty_trending: AppCompatActivity() {
+    lateinit var main : RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +29,16 @@ class MainActivity : AppCompatActivity() {
 
 
         val todoVM = listOf(
-            //database
+            data_trending(R.drawable.account_profile_user, "Aadasd", "Rp 989.989"),
+            data_trending(R.drawable.account_profile_user, "Basfasfa", "Rp 1.239.989"),
+            data_trending(R.drawable.account_profile_user, "Casfasf", "Rp 9.129.989"),
+            data_trending(R.drawable.account_profile_user, "Dasfasf", "Rp 29.989"),
         )
 
         main = findViewById(R.id.recyclerSemuaKategoriPage)
         main.apply {
-            layoutManager = GridLayoutManager(this@MainActivity, 2)
-            adapter = adaptertrendingpage(todoVM)
+            layoutManager = GridLayoutManager(this@MainActivty_trending, 2)
+            adapter = adapterTrending(todoVM)
         }
 
     }

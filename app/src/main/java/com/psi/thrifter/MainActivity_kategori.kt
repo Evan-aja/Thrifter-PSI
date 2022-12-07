@@ -29,7 +29,17 @@ class MainActivity_kategori : AppCompatActivity() {
 
 
         val todoVM = listOf(
-            //Database
+            data_kategori(R.drawable.account_profile_user,"A"),
+            data_kategori(R.drawable.account_profile_user,"B"),
+            data_kategori(R.drawable.account_profile_user,"C"),
+            data_kategori(R.drawable.account_profile_user,"C"),
+            data_kategori(R.drawable.account_profile_user,"C"),
+            data_kategori(R.drawable.account_profile_user,"C"),
+            data_kategori(R.drawable.account_profile_user,"C"),
+            data_kategori(R.drawable.account_profile_user,"C"),
+            data_kategori(R.drawable.account_profile_user,"C"),
+            data_kategori(R.drawable.account_profile_user,"C"),
+            data_kategori(R.drawable.account_profile_user,"D")
         )
 
         main = findViewById(R.id.recyclerSemuaKategoriPage)
