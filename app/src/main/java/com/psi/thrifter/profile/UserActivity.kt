@@ -1,4 +1,4 @@
-package com.psi.thrifter
+package com.psi.thrifter.profile
 
 import android.os.Bundle
 import android.widget.Button
@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.psi.thrifter.R
 import com.psi.thrifter.controller.InjectorUtils
 import com.psi.thrifter.controller.user.UserViewModel
 import com.psi.thrifter.data.user.User

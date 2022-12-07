@@ -1,4 +1,4 @@
-package com.example.ujicoba
+package com.psi.thrifter.kategori
 
 data class data_kategori(
     val image: Int,

@@ -1,4 +1,4 @@
-package com.example.ujicoba
+package com.psi.thrifter.kategori
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +17,9 @@ class adapterKategori(private val kategori: List<data_kategori>) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val kategori = kategori[position]
-        holder.view.findViewById<ImageView>(R.id.img_item_photo).setImageDrawable(holder.view.context.getDrawable(kategori.image))
-        holder.view.findViewById<TextView>(R.id.tv_item_name).text = "${kategori.nama}"
+        val pahlawan = kategori[position]
+        holder.view.findViewById<ImageView>(R.id.img_item_photo).setImageDrawable(holder.view.context.getDrawable(pahlawan.image))
+        holder.view.findViewById<TextView>(R.id.tv_item_name).text = "${pahlawan.nama}"
     }
 
     override fun getItemCount() = kategori.size

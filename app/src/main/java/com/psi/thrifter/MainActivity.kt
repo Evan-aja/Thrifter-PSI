@@ -8,6 +8,8 @@ import com.psi.thrifter.cart.CartFragment
 import com.psi.thrifter.databinding.ActivityMainBinding
 import com.psi.thrifter.home.HomeFragment
 import android.widget.Button
+import com.psi.thrifter.kategori.SearchFragment
+import com.psi.thrifter.profile.ProfileFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,11 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(HomeFragment())
-        val button=findViewById<Button>(R.id.button2)
-        button.setOnClickListener{
-            val intent = Intent(this, UserActivity::class.java)
-            startActivity(intent)
-        }
+
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.home -> replaceFragment(HomeFragment())
@@ -44,6 +42,5 @@ class MainActivity : AppCompatActivity() {
         val fragmentTransaction = fragmentManager.beginTransaction()
         fragmentTransaction.replace(R.id.frame_layout,fragment)
         fragmentTransaction.commit()
-        setContentView(R.layout.activity_main)
     }
 }
