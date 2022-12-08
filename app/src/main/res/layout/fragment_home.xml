@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:id="@+id/home_layout"
         android:layout_width="match_parent"
         android:background="@drawable/custom_app_bar_background"
         android:orientation="vertical"
@@ -44,7 +45,8 @@
                 android:textAlignment="center"
                 android:textColor="#393E46"
                 android:textSize="48sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"
+                app:fontFamily="@font/manuale_bold"></TextView>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -68,6 +70,7 @@
                     android:textSize="19sp"></TextView>
 
                 <TextView
+                    android:id="@+id/seeAll"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginRight="20sp"
@@ -122,7 +125,7 @@
 
 
 
-        </RelativeLayout>
+            </RelativeLayout>
             <HorizontalScrollView
                 android:layout_below="@id/titlekategoritxt"
                 android:layout_width="wrap_content"
