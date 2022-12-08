@@ -227,6 +227,6 @@
             android:background="@drawable/roundshape"
             android:elevation="15dp"
             android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_navigation_menu" />
+            app:menu="@menu/bottom_nav_menu" />
     </RelativeLayout>
 </LinearLayout>
