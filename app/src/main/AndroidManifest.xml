@@ -25,7 +25,9 @@
         <activity
             android:name="com.psi.thrifter.MainActivity"
             />
-
+        <activity
+            android:name=".ItemActivity"
+            android:exported="false"/>
 
         <activity
             android:name="com.psi.thrifter.SplashScreen"
