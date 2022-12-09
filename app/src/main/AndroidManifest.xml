@@ -25,8 +25,8 @@
         <activity
             android:name="com.psi.thrifter.MainActivity"
             />
-
-
+        <activity android:name=".Splashpayment"
+            />
         <activity
             android:name="com.psi.thrifter.SplashScreen"
             android:exported="true">
