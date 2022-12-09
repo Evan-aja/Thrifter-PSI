@@ -1,6 +1,8 @@
 package com.psi.thrifter.data.category
 
-data class Category(val Name:String, val Photo:String){
+import android.graphics.Bitmap
+
+data class Category(val Name:String, val Photo:Bitmap){
     override fun toString(): String {
         return "$Name---$Photo"
     }
