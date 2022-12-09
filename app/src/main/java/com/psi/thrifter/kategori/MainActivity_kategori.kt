@@ -31,9 +31,8 @@ class MainActivity_kategori : AppCompatActivity() {
         val todoVM = listOf(
             data_kategori(R.drawable.kategori_baju,"Baju"),
             data_kategori(R.drawable.kategori_celana,"Celana"),
-            data_kategori(R.drawable.kategori_sepatu,"topi"),
+            data_kategori(R.drawable.kategori_sepatu,"Sepatu"),
             data_kategori(R.drawable.kategori_topi,"Topi"),
-
         )
 
         main = findViewById(R.id.recyclerSemuaKategoriPage)
