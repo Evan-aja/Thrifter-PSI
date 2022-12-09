@@ -35,15 +35,6 @@ class MainActivity_kategori : AppCompatActivity() {
         val RVPahlawan=findViewById<RecyclerView>(R.id.recyclerSemuaKategoriPage)
         RVPahlawan.adapter=adapter
         RVPahlawan.layoutManager= GridLayoutManager(this@MainActivity_kategori, 2)
-
-
-        val todoVM = listOf(
-            data_kategori(R.drawable.kategori_baju,"Baju"),
-            data_kategori(R.drawable.kategori_celana,"Celana"),
-            data_kategori(R.drawable.kategori_sepatu,"topi"),
-            data_kategori(R.drawable.kategori_topi,"Topi"),
-
-            )
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
