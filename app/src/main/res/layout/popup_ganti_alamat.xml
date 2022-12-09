@@ -8,6 +8,7 @@
         android:id="@+id/gantiAlamat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLength="50"
         android:hint="write your address"/>
 
 </LinearLayout>

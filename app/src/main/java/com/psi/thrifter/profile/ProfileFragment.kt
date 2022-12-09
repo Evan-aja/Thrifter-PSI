@@ -25,7 +25,7 @@ class ProfileFragment : Fragment(), View.OnClickListener {
     private lateinit var txtBank : TextView
     private lateinit var ejak : TextView
     private lateinit var rel1 : RelativeLayout
-    private lateinit var rel2 : RelativeLayout
+    private lateinit var rel2 : LinearLayout
     private lateinit var btnD : Button
 
     override fun onCreateView(
