@@ -15,24 +15,29 @@
 
         <activity
             android:name="com.psi.payment_page.PaymentActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".detail.DetailProductActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".seeAll.seeAllActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name="com.psi.thrifter.MainActivity"
-            />
-        <activity android:name=".Splashpayment"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             />
         <activity
             android:name=".ItemActivity"
-            android:exported="false"/>
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+
         <activity
             android:name="com.psi.thrifter.SplashScreen"
-            android:exported="true">
+            android:exported="true"
+            android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
