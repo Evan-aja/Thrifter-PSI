@@ -19,7 +19,11 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         replaceFragment(HomeFragment())
-
+        val button=findViewById<Button>(R.id.button)
+        button.setOnClickListener{
+            val intent = Intent(this, ItemActivity::class.java)
+            startActivity(intent)
+        }
         binding.bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.home -> replaceFragment(HomeFragment())
