@@ -9,7 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import android.view.View
+import android.widget.*
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -66,87 +66,6 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener {
         val buttonbayar = findViewById<Button>(R.id.bayarbtn)
         buttonbayar.setOnClickListener {
             startActivity(Intent(this@PaymentActivity, Splashpayment::class.java))
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        val penyimpanan: SharedPreferences = getSharedPreferences("simpan", MODE_PRIVATE)
-        if(penyimpanan.getString("Bank", "") != null){
-            val currentBank = penyimpanan.getString("Bank", "")
-            myPayment.text = currentBank
-        }
-        if (penyimpanan.getString("Alamat","") != null) {
-            val currentAddress = penyimpanan.getString("Alamat", "")
-            myAddress.text = currentAddress
-        }
-        if (penyimpanan.getString("Kurir", "") != null) {
-            val currentCourier = penyimpanan.getString("Kurir", "")
-            myCourier.text = currentCourier
-        }
-    }
-
-    override fun onClick(v: View?) {
-        if (v?.id == R.id.jenispembayaranbtn) {
-            val items = arrayOf("BANK BNI", "BANK BRI", "BANK MANDIRI", "BANK BCA", "BANK PERMATA", "BANK MEGA", "BANK DANAMON")
-            val builder = AlertDialog.Builder(this)
-            with(builder)
-            {
-                setTitle("List of Items")
-                setItems(items) { dialog, which ->
-//                    var arkansas : TextView = view.findViewById(R.id.bankSaya)
-                    val penyimpanan: SharedPreferences = getSharedPreferences("simpan", MODE_PRIVATE)
-                    val editor: SharedPreferences.Editor = penyimpanan.edit()
-                    editor.putString("Bank", items[which])
-                    editor.apply()
-                    editor.commit()
-                    myPayment.text = items[which]
-                }
-
-                setPositiveButton("OK") {
-                        dialog: DialogInterface, which: Int ->
-                }
-                show()
-            }
-        }
-        if (v?.id == R.id.alamatbtn) {
-            val penyimpanan: SharedPreferences = getSharedPreferences("simpan", MODE_PRIVATE)
-            val editor: SharedPreferences.Editor = penyimpanan.edit()
-            val alamatDialog = AlertDialog.Builder(this)
-            alamatDialog.setTitle("Ganti alamat")
-            val viewAlamat: View = layoutInflater.inflate(R.layout.popup_ganti_alamat, null)
-            val editText  = viewAlamat.findViewById<EditText>(R.id.gantiAlamat)
-            alamatDialog.setView(viewAlamat)
-            alamatDialog.setPositiveButton("Ganti") {
-                    dialogInterface, i ->
-                myAddress.text = editText.text.toString()
-                editor.putString("Alamat", editText.text.toString())
-                editor.apply()
-                editor.commit()
-            }
-            val diane : AlertDialog = alamatDialog.create()
-            diane.show()
-        }
-        if (v?.id == R.id.ekspedisibtn) {
-            val items = arrayOf("SiPalingCepat(Rp 25.000)", "SiPalingGesit(Rp 24.000)", "Je en Es(Rp 20.000)", "Shinobi Express(Rp 21.000)")
-            val builder = AlertDialog.Builder(this)
-            with(builder)
-            {
-                setTitle("List of Items")
-                setItems(items) { dialog, which ->
-                    val penyimpanan: SharedPreferences = getSharedPreferences("simpan", MODE_PRIVATE)
-                    val editor: SharedPreferences.Editor = penyimpanan.edit()
-                    editor.putString("Kurir", items[which])
-                    editor.apply()
-                    editor.commit()
-                    myCourier.text = items[which]
-                }
-
-                setPositiveButton("OK") {
-                        dialog: DialogInterface, which: Int ->
-                }
-                show()
-            }
         }
     }
 
