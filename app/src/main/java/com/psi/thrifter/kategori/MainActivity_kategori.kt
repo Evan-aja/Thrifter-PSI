@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBar
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.psi.thrifter.AdapterItem
 import com.psi.thrifter.R
+import com.psi.thrifter.viewModelItem
 
 class MainActivity_kategori : AppCompatActivity() {
     lateinit var main : RecyclerView
@@ -27,20 +30,20 @@ class MainActivity_kategori : AppCompatActivity() {
             actionBar.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
+        val VMitems= viewModelKategori(this)
+        val adapter= adapterKategori(VMitems.getItem())
+        val RVPahlawan=findViewById<RecyclerView>(R.id.recyclerSemuaKategoriPage)
+        RVPahlawan.adapter=adapter
+        RVPahlawan.layoutManager= GridLayoutManager(this@MainActivity_kategori, 2)
+
 
         val todoVM = listOf(
             data_kategori(R.drawable.kategori_baju,"Baju"),
             data_kategori(R.drawable.kategori_celana,"Celana"),
-            data_kategori(R.drawable.kategori_sepatu,"Sepatu"),
+            data_kategori(R.drawable.kategori_sepatu,"topi"),
             data_kategori(R.drawable.kategori_topi,"Topi"),
-        )
 
-        main = findViewById(R.id.recyclerSemuaKategoriPage)
-        main.apply {
-            layoutManager = GridLayoutManager(this@MainActivity_kategori, 2)
-            adapter = adapterKategori(todoVM)
-        }
-
+            )
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
