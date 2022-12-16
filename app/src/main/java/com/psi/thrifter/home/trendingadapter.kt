@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.psi.thrifter.R
 import com.psi.thrifter.home.OnTrendingClickListener
 
-class Listtrendingadapter(private val listtrending: ArrayList<trendingdata>,private val onTrendingClickListener: OnTrendingClickListener):
+class Listtrendingadapter(private val listtrending: ArrayList<itemData>,private val onTrendingClickListener: OnTrendingClickListener):
     RecyclerView.Adapter<Listtrendingadapter.ListViewHolder>() {
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.list_item, viewGroup, false)

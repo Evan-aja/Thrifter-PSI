@@ -6,9 +6,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ThrifterPSI"
         tools:targetApi="31">
@@ -26,14 +26,30 @@
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
+            android:name=".seeAll.seeCelanaActivity"
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name=".seeAll.seeBajuActivity"
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name=".seeAll.seeTopiActivity"
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name=".seeAll.seeSepatuActivity"
+            android:exported="false"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
             android:name="com.psi.thrifter.MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            />
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity android:name=".Splashpayment"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".ItemActivity"
             android:exported="false"
             android:configChanges="keyboardHidden|orientation|screenSize"/>
-
         <activity
             android:name="com.psi.thrifter.SplashScreen"
             android:exported="true"
