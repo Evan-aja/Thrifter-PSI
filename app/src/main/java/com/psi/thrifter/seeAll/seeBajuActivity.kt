@@ -1,19 +1,12 @@
 package com.psi.thrifter.seeAll
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.psi.thrifter.Listtrendingadapter
 import com.psi.thrifter.R
-import com.psi.thrifter.detail.DetailProductActivity
-import com.psi.thrifter.home.OnTrendingClickListener
 import com.psi.thrifter.home.dataUtil
 import com.psi.thrifter.itemData
 import io.reactivex.rxkotlin.subscribeBy
@@ -21,8 +14,7 @@ import io.reactivex.rxkotlin.toObservable
 import java.util.*
 import kotlin.collections.ArrayList
 
-class seeAllActivity : AppCompatActivity(){
-
+class seeBajuActivity : AppCompatActivity(){
     private lateinit var rvCart :RecyclerView
     private lateinit var searcView: SearchView
     private var list = ArrayList<itemData>()
@@ -31,6 +23,9 @@ class seeAllActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_see_all)
+
+        val tvTitle : TextView = findViewById(R.id.tv_desc)
+        tvTitle.setText("Baju")
 
         rvCart = findViewById(R.id.rv_cart)
         searcView = findViewById(R.id.searchView)
@@ -74,14 +69,3 @@ class seeAllActivity : AppCompatActivity(){
         }
     }
 }
-
-//
-//    override fun onTrendingItemClicked(position: Int) {
-//        val intent = Intent(this, DetailProductActivity::class.java)
-//        intent.putExtra("judul",list[position].title)
-//        intent.putExtra("photo",list[position].img)
-//        intent.putExtra("harga",list[position].harga)
-//        intent.putExtra("nama_toko",list[position].namaToko)
-//        intent.putExtra("deskripsi",list[position].desc)
-//        startActivity(intent)
-//    }

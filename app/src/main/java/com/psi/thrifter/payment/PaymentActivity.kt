@@ -1,14 +1,17 @@
 package com.psi.payment_page
 
-import android.app.AlertDialog
+import android.app.*
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.*
 import android.widget.*
 import android.widget.EditText
 import android.widget.ImageButton
@@ -17,14 +20,22 @@ import android.widget.TextView
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.psi.cart_page.cartData
 import com.psi.thrifter.MainActivity
 import com.psi.thrifter.R
 import com.psi.thrifter.Splashpayment
 
 class PaymentActivity : AppCompatActivity(), View.OnClickListener {
+
+    lateinit var notificationManager: NotificationManager
+    lateinit var notificationChannel: NotificationChannel
+    lateinit var builder : Notification.Builder
+    private val channelId = "com.psi.payment_page"
+    private val description = "Test Notif"
     private lateinit var myPayment : TextView
     private lateinit var myAddress : TextView
     private lateinit var myCourier : TextView
+    private lateinit var subTotal : TextView
     private lateinit var btnPayment : ImageButton
     private lateinit var btnAddress : ImageButton
     private lateinit var btnCourier : ImageButton
@@ -33,15 +44,49 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.payment_activity)
 
         val list = ArrayList<itempayment>()
-        val itempayment1 =
-            itempayment(R.drawable.sp1, "Kaos Elvi's", "EvanPunya Shop", "Rp 599.999")
-        val itempayment2 =
-            itempayment(R.drawable.sp1, "Kaos Elvi's", "EvanPunya Shop", "Rp 599.999")
-        val itempayment3 =
-            itempayment(R.drawable.sp1, "Kaos Elvi's", "EvanPunya Shop", "Rp 599.999")
-        list.add(itempayment1)
-        list.add(itempayment2)
-        list.add(itempayment3)
+//        val itempayment1 =
+//            itempayment(R.drawable.sp1, "Kaos Elvi's", "EvanPunya Shop", "Rp 599.999")
+//        val itempayment2 =
+//            itempayment(R.drawable.sp1, "Kaos Elvi's", "EvanPunya Shop", "Rp 599.999")
+//        val itempayment3 =
+//            itempayment(R.drawable.sp1, "Kaos Elvi's", "EvanPunya Shop", "Rp 599.999")
+//        list.add(itempayment1)
+//        list.add(itempayment2)
+//        list.add(itempayment3)
+
+        val penyimpanan: SharedPreferences = getSharedPreferences("simpan", AppCompatActivity.MODE_PRIVATE)
+        val editor: SharedPreferences.Editor = penyimpanan.edit()
+        val namaBarang = arrayOf("judul1","judul2","judul3","judul4","judul5")
+        for (barang in namaBarang) {
+            if(penyimpanan.getString(barang, "")=="") {
+                //list.remove(cartData(R.drawable.gambar_dummy, penyimpanan.getString("$barang","").toString(), "AkmalPunya", "Rp. 199.999"))
+                continue
+            } else {
+                when (barang) {
+                    "judul1" -> {
+                        var item1 = itempayment(R.drawable.sp1, penyimpanan.getString("$barang","").toString(), "Toko Alvaro","Rp. 999.999")
+                        list.add(item1)
+                    }
+                    "judul2" -> {
+                        var item1 = itempayment(R.drawable.sp2, penyimpanan.getString("$barang","").toString(), "Toko Adhi","Rp. 1.199.999")
+                        list.add(item1)
+                    }
+                    "judul3" -> {
+                        var item1 = itempayment(R.drawable.sp3, penyimpanan.getString("$barang","").toString(), "Toko Evan","Rp. 999.899")
+                        list.add(item1)
+                    }
+                    "judul4" -> {
+                        var item1 = itempayment(R.drawable.sp4, penyimpanan.getString("$barang","").toString(), "Toko Akmal","Rp. 2.999.899")
+                        list.add(item1)
+                    }
+                    "judul5" -> {
+                        var item1 = itempayment(R.drawable.sp4, penyimpanan.getString("$barang","").toString(), "AkmalPunya","Rp. 9.999.999")
+                        list.add(item1)
+                    }
+                }
+            }
+
+        }
 
         myPayment = findViewById(R.id.jenispembayarantxt)
         myAddress = findViewById(R.id.alamattxt)
@@ -52,6 +97,9 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener {
         btnAddress.setOnClickListener(this)
         btnCourier = findViewById(R.id.ekspedisibtn)
         btnCourier.setOnClickListener(this)
+        subTotal = findViewById(R.id.hargatxt)
+        val harga : String = penyimpanan.getInt("subTotal",0).toString()
+        subTotal.text = "Rp. $harga"
 
         val rvItempayment: RecyclerView = findViewById(R.id.recvitempayment)
         val itempaymentadapter = List_itempaymentadapter(list)
@@ -64,8 +112,42 @@ class PaymentActivity : AppCompatActivity(), View.OnClickListener {
             true
         }
         val buttonbayar = findViewById<Button>(R.id.bayarbtn)
+        notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         buttonbayar.setOnClickListener {
+            val barang = arrayOf("judul1","judul2","judul3","judul4","judul5")
+            for(a in barang){
+                editor.putString(a,"")
+                editor.putInt("subTotal",0)
+                editor.apply()
+            }
             startActivity(Intent(this@PaymentActivity, Splashpayment::class.java))
+            val intent = Intent(this,MainActivity::class.java)
+            val pendingIntent = PendingIntent.getActivity(this,0,intent, PendingIntent.FLAG_UPDATE_CURRENT)
+
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                notificationChannel =
+                    NotificationChannel(channelId, description, NotificationManager.IMPORTANCE_HIGH)
+                notificationChannel.enableLights(true)
+                notificationChannel.lightColor = Color.GREEN
+                notificationChannel.enableVibration(false)
+                notificationManager.createNotificationChannel(notificationChannel)
+
+                builder = Notification.Builder(this,channelId)
+                    .setContentTitle("Notifikasi Pembayaran")
+                    .setContentText("Segera Lakukan Pembayaran sebelum masa pembayaran habis")
+                    .setSmallIcon(R.drawable.logo)
+                    .setLargeIcon(BitmapFactory.decodeResource(this.resources,R.drawable.ic_launcher_foreground))
+                    .setContentIntent(pendingIntent)
+            }else{
+                builder = Notification.Builder(this)
+                    .setContentTitle("Notifikasi Pembayaran")
+                    .setContentText("Segera Lakukan Pembayaran sebelum masa pembayaran habis")
+                    .setSmallIcon(R.drawable.logo)
+                    .setLargeIcon(BitmapFactory.decodeResource(this.resources,R.drawable.ic_launcher_foreground))
+                    .setContentIntent(pendingIntent)
+            }
+            notificationManager.notify(1234,builder.build())
         }
     }
 

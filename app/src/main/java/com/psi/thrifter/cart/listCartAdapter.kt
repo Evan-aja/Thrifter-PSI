@@ -9,9 +9,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 import com.psi.thrifter.R
+import com.psi.thrifter.cart.OnCartClickListener
 import java.util.ArrayList
 
-class listCartAdapter (private val listCart: ArrayList<Cart_Item>):
+class listCartAdapter (var listCart: ArrayList<cartData>, private val onCartClickListener: OnCartClickListener):
     RecyclerView.Adapter<listCartAdapter.ListViewHolder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ListViewHolder {
@@ -27,9 +28,16 @@ class listCartAdapter (private val listCart: ArrayList<Cart_Item>):
         holder.tvNamaToko.text = namaToko
         holder.tvHarga.text = hargaItem
 
-        holder.imgPhoto.setOnClickListener {
-            Toast.makeText( holder.imgPhoto.context, "You choose ${holder.tvName.text}", Toast.LENGTH_SHORT).show()
+        holder.btnDelete.setOnClickListener {
+            onCartClickListener.onCartClicked(position)
+
+
         }
+    }
+
+    fun setCartList(listCart: ArrayList<cartData>){
+        this.listCart = listCart
+        notifyDataSetChanged()
 
     }
 
@@ -39,7 +47,9 @@ class listCartAdapter (private val listCart: ArrayList<Cart_Item>):
         var tvName: TextView = itemView.findViewById(R.id.tv_nama)
         var tvNamaToko: TextView = itemView.findViewById(R.id.tv_namaToko)
         var tvHarga: TextView = itemView.findViewById(R.id.tv_hargaItem)
-
+        var btnDelete: ImageView = itemView.findViewById(R.id.delete_btn)
 
     }
+
+
 }

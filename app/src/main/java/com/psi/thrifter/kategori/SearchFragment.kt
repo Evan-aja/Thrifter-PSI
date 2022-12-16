@@ -1,16 +1,31 @@
 package com.psi.thrifter.kategori
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.psi.thrifter.Listtrendingadapter
 import com.psi.thrifter.R
+import com.psi.thrifter.detail.DetailProductActivity
+import com.psi.thrifter.seeAll.seeBajuActivity
+import com.psi.thrifter.seeAll.seeCelanaActivity
+import com.psi.thrifter.seeAll.seeSepatuActivity
+import com.psi.thrifter.seeAll.seeTopiActivity
+import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.rxkotlin.toObservable
 
-class SearchFragment : Fragment() {
-    lateinit var main: RecyclerView
+class SearchFragment : Fragment(),OnKategoriClickListener {
+    val todoVM = listOf(
+        data_kategori(R.drawable.kategori_baju,"Baju"),
+        data_kategori(R.drawable.kategori_celana,"Celana"),
+        data_kategori(R.drawable.kategori_sepatu,"Sepatu"),
+        data_kategori(R.drawable.kategori_topi,"Topi")
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -26,20 +41,17 @@ class SearchFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_search,container,false)
 
-
-        val todoVM = listOf(
-            data_kategori(R.drawable.kategori_baju,"Baju"),
-            data_kategori(R.drawable.kategori_celana,"Celana"),
-            data_kategori(R.drawable.kategori_sepatu,"topi"),
-            data_kategori(R.drawable.kategori_topi,"Topi")
-
+        todoVM.toObservable()
+            .subscribeBy(
+                onNext = {val rvCat:RecyclerView = root.findViewById(R.id.recyclerSemuaKategoriPage)
+                    val cat_adapter = adapterKategori(todoVM,this)
+                    rvCat.adapter = cat_adapter
+                    rvCat.layoutManager = GridLayoutManager(this.context, 2, GridLayoutManager.VERTICAL, false)
+                },
+                onError = {it.printStackTrace()},
+                onComplete = { println("onComplete")}
             )
 
-        main = root.findViewById(R.id.recyclerSemuaKategoriPage)
-        main.apply {
-            layoutManager = GridLayoutManager(this.context, 2)
-            adapter = adapterKategori(todoVM)
-        }
 
         return root
     }
@@ -47,15 +59,7 @@ class SearchFragment : Fragment() {
 
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             SearchFragment().apply {
@@ -64,4 +68,23 @@ class SearchFragment : Fragment() {
                 }
             }
     }
+
+    override fun onKategoriItemClicked(position: Int) {
+        if(todoVM[position].nama == "Celana"){
+            val intent = Intent(this.context, seeCelanaActivity::class.java)
+            startActivity(intent)
+        }else if (todoVM[position].nama == "Baju"){
+            val intent = Intent(this.context, seeBajuActivity::class.java)
+            startActivity(intent)
+        }else if (todoVM[position].nama == "Topi") {
+            val intent = Intent(this.context, seeTopiActivity::class.java)
+            startActivity(intent)
+        }else if (todoVM[position].nama == "Sepatu") {
+            val intent = Intent(this.context, seeSepatuActivity::class.java)
+            startActivity(intent)
+        }
+
+
+    }
+
 }
